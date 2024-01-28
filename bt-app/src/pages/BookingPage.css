@@ -20,8 +20,8 @@
   }
   
   .header-title {
-    margin-top: 20px; /* Adjust the top margin as needed */
-    margin-left: 20px; /* Adjust the left margin as needed */
+    margin-top: 100px; /* Adjust the top margin as needed */
+    margin-left: 10px; /* Adjust the left margin as needed */
     margin-bottom: 20px; /* Space above the professional cards */
     font-size: 2em; /* Adjust font size as needed */
   }
@@ -53,10 +53,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: emphasize shadow on hover */
   }
 
-  .professional-card.selected {
-    transform: scale(1.1); /* Slightly larger to show it's selected */
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Add a shadow for effect */
-  }
   
   .professional-image-wrapper {
     width: 100px; /* Adjust size as needed */
@@ -169,4 +165,79 @@
     font-size: 1.2em;
   }
   
- 
+  .choose-time-btn {
+    padding: 15px 0;
+    width: 100%; /* Button should take the full width */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  
+  .choose-time-btn:hover {
+    background-color: #333;
+  }
+  
+  .professional-card.selected {
+    /* Styles to apply when the card is selected, e.g., a different border or shadow */
+    border: 2px solid lightslategray; /* Example: a blue border to indicate selection */
+    transform: scale(1.05); /* Keep it scaled up when selected */
+  }
+
+
+  .brand-bubble {
+    position: absolute; /* Position it relative to the parent element */
+    top: 30px; /* Distance from the top of the container */
+    left: 20px; /* Distance from the left of the container */
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 8px 16px; /* Padding inside the bubble */
+    border-radius: 15px; /* Rounded corners for the bubble */
+    font-weight: bold; /* Make the text bold */
+    z-index: 10; /* Ensure it's above other elements */
+
+  }
+  
+  /* Ensure the booking container is relative for the absolute positioning of the brand bubble */
+  .booking-container {
+    position: relative;
+    /* ... other styles ... */
+  }
+
+
+  .extra-service-btn {
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark text color */
+    border: 1px solid #ddd; /* Light border */
+    padding: 5px 10px; /* Padding inside the button */
+    margin-right: 5px; /* Margin between buttons */
+    cursor: pointer; /* Cursor indicates clickable */
+    border-radius: 5px; /* Rounded corners for buttons */
+    margin-bottom: 10px; /* Space below buttons */
+  }
+  
+  .extra-service-btn.selected {
+    background-color: #333; /* Dark background for selected */
+    color: #fff; /* White text for selected */
+    border-color: #333; /* Dark border for selected */
+  }
+
+/* PaymentSummary.css */
+/* ... existing styles ... */
+
+.service-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure the container takes the full width */
+  }
+  
+  .basePrice {
+    font-size: large;
+    /* 'margin-left' is not necessary as 'justify-content: space-between' 
+       in '.service-and-price' will handle the spacing */
+  }

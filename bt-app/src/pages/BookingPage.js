@@ -8,14 +8,20 @@ import PaymentSummary from '../components/PaymentSummary';
 // The main booking page component
 const BookingPage = () => {
 
+  const [selectedProfessional, setSelectedProfessional] = useState(null);
+
+  const handleProfessionalClick = (professional) => {
+    setSelectedProfessional(professional);
+  };
+
 
   const [professionals, setProfessionals] = useState([
-    { name: 'Ricky', availableDate: '' },
-    { name: 'Jeremy', availableDate: '' },
-    { name: 'Kevin', availableDate: ''},
-    { name: 'Marc', availableDate: ''},
-    { name: 'Lamar', availableDate: ''},
-    { name: 'Jacob', availableDate: ''},
+    { name: 'Ricky', availableDate: '' , price: "30.00", serviceName: 'Haircut L2'},
+    { name: 'Jeremy', availableDate: '' , price: "30.00", serviceName: 'Haircut L2'},
+    { name: 'Kevin', availableDate: '' , price: "28.00" , serviceName: 'Junior Haircut L1'},
+    { name: 'Marc', availableDate: '' , price: "37.00", serviceName: 'Haircut L3'},
+    { name: 'Lamar', availableDate: '' , price: "45.00", serviceName: 'Senior Haircut L3'},
+    { name: 'Jacob', availableDate: '' , price: "25.00", serviceName: 'Junior Haircut L1'},
   ]);
 
   useEffect(() => {
@@ -53,20 +59,28 @@ const BookingPage = () => {
 
   return (
     <div className="booking-container">
+    <div className="brand-bubble">AJ Theory</div> {/* Brand bubble added */}
       <div className="left-container">
         <h1 className="header-title">Choose A Professional</h1>
         <div className="professionals-container">
           {professionals.map((professional, index) => (
-            <ProfessionalCard key={index} {...professional} />
+            <ProfessionalCard
+              key={index}
+              {...professional}
+              isSelected={selectedProfessional?.name === professional.name}
+              onClick={() => handleProfessionalClick(professional)}
+            />
           ))}
         </div>
       </div>
       <div className="right-container">
-      <PaymentSummary
-        barberName={selectedService.barberName}
-        serviceDescription={selectedService.serviceDescription}
-        price={selectedService.price}
-      />
+        {selectedProfessional && (
+          <PaymentSummary
+            barberName={selectedProfessional ? selectedProfessional.name : ''}
+            serviceDescription={selectedProfessional ? selectedProfessional.serviceName : ''}
+            basePrice={selectedProfessional ? selectedProfessional.price : '0'}
+          />
+        )}
       </div>
     </div>
   );
