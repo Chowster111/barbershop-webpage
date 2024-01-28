@@ -1,0 +1,193 @@
+.schedule-page {
+    display: flex;
+    flex-direction: row; /* Make sure it's row for side-by-side columns */
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    overflow: hidden; /* Hide the scrollbar by clipping off any overflow */
+    /* ... */
+  }
+  
+  
+  .heading-container {
+    width: 100%;
+    text-align: left;
+    margin-top: 26px; /* Increase the top margin to push the heading down */
+    padding-left: 20px;
+  }
+
+
+  .day-container {
+    display: flex;
+    justify-content: space-between; /* Adjust this to space-between to add space between the day bubbles */
+    align-items: center;
+    margin-bottom: 30px; /* Separation between days and time slots */
+    margin-top: 20px; /* Increase the top margin to push the heading down */
+    padding-left: 5px; /* Adjust or remove padding if necessary */
+    width: 100%; /* Ensure the day container takes up the full width */
+  }
+  
+  .left-columnSP {
+    width: 55%; /* Adjusted to 60% for the left column */
+    /* ... Other styles ... */
+    margin-right: auto; /* Push everything to the right */
+    padding: 0; /* Reset padding if needed */
+    margin-left: 10px;
+  }
+
+
+  .right-columnSP {
+    width: 45%;
+    height: calc(100vh - 80px); /* Adjust the height to remove the scrollbar, subtracting the top padding */
+    margin-left: auto; /* Push the column to the right */
+    padding: 0 10px; /* Add padding inside the right column if needed */
+    background-color: #f5f5f5; /* Light grey background for the whole page */
+    /* ... */
+    margin-left: 90px;
+    
+  }
+
+ 
+  
+
+  .day-bubble {
+    background-color: #fff; /* Change background to white */
+    color: #000; /* Change text color to black for visibility */
+    border: 2px solid #ddd; /* Light grey border for visibility */
+    border-radius: 50%; /* Circular shape */
+    width: 60px; /* Fixed width */
+    height: 60px; /* Fixed height */
+    margin: 0 10px; /* Add space between day bubbles */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative; /* Needed to position the day label absolutely */
+  }
+  
+
+
+  
+  .day-bubble:hover, .day-bubble.selected {
+    transform: scale(1.05); /* Slightly scale up the bubble */
+    border-color: #000; /* Darker border on hover/select */
+  }
+
+  
+  .day-label {
+    color: #000; /* Black text for the day of the week */
+    position: absolute;
+    bottom: -20px; /* Position below the day number */
+    font-size: 0.8em; /* Smaller font size for the day label */
+    white-space: nowrap; /* Prevent wrapping */
+  }
+  
+  .time-slot-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Auto grid layout */
+    gap: 15px;
+    width: 100%;
+    padding-left: 20px; /* Align the time slots with the days */
+  }
+
+  .day-number {
+  font-size: 1.2em; /* Larger font size for the day number */
+  color: #000; /* Black text for visibility */
+  font-weight: bold; /* Bold font weight for the day number */
+  margin-bottom: 4px; /* Space above the day label */
+}
+  
+  
+  
+
+  
+
+  
+  .time-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px; /* Same as professional cards */
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, margin 0.3s ease;
+    will-change: transform, margin;
+    border: 1px solid #ddd; /* Thin light grey border */
+  }
+  
+  .time-slot.selected {
+    background-color: #ececec; /* Light grey background for selected time slot */
+    border-color: #000; /* Black border for selected time slot */
+  }
+
+  
+  .time-slot:hover {
+    transform: scale(1.10); /* This slightly scales up the card */
+    margin-bottom: 10px; /* This adds space at the bottom */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .brand-bubble {
+    position: absolute;
+    top: 20px; /* Adjust as needed for your layout */
+    left: 20px; /* Adjust as needed for your layout */
+    background-color: #000; /* Background color for the bubble */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Padding inside the bubble */
+    border-radius: 20px; /* Rounded corners for the bubble */
+    z-index: 10; /* Ensure it's above other elements */
+  }
+
+  .map-container {
+    width: 70%; /* Full width of the right column */
+    height: 70%; /* Adjust the height to make it more box-like */
+    
+    border-radius: 20px; /* Rounded corners for the bubble effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensure the map corners are also rounded */
+    
+}
+
+h2.MapHeader{
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+
+.mapboxgl-marker {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+  }
+  
+  /* Add styles for the custom marker */
+.custom-marker {
+    width: 20px; /* Adjust the width */
+    height: 20px; /* Adjust the height */
+    background-color: red; /* Marker color */
+    border-radius: 20%; /* Make it a circle */
+    /* Add any additional styles you want for the marker */
+  }
+
+  .payment-button{
+    border-radius: 20px;
+    margin-top: 40px;
+    margin-left: 150px;
+    background-color: #ccc; /* Grey background color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition for background-color and color properties */
+  }
+
+  /* Selected style for the button (black) */
+  .payment-button.ready-to-pay {
+    background-color: #000; /* Black background color */
+    color: #fff; /* White text color */
+    cursor: pointer; /* Change cursor to pointer when ready to pay */
+  }
+  

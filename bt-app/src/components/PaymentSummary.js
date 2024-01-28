@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'; // Import useHistory
 import '../pages/BookingPage.css';
 
 const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
@@ -8,6 +9,8 @@ const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
     { label: 'Beard Trim/Shave', price: 10 },
     { label: 'Scissor Cut (1hr)', price: 20 },
   ];
+
+  const history = useHistory(); // Initialize useHistory
 
   const toggleExtraService = (label) => {
     setSelectedExtras((prevExtras) =>
@@ -23,6 +26,10 @@ const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
       return total + (extra ? extra.price : 0);
     }, 0);
     return (parseFloat(basePrice) + extraCost).toFixed(2);
+  };
+
+  const handleChooseTimeClick = () => {
+    history.push(`/schedule/${barberName}`);
   };
 
   return (
@@ -52,7 +59,9 @@ const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
         <span className="subtotal-text">Subtotal</span>
         <span className="subtotal-price">${calculateTotalPrice()}</span>
       </div>
-      <button className="choose-time-btn">Choose a time</button>
+      <button className="choose-time-btn" onClick={handleChooseTimeClick}>
+        Choose a time
+      </button>
     </div>
   );
 };
