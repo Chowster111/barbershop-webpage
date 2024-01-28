@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  height: 100vh; /* This makes the container fit the entire viewport height */
+  background: url('assets/logomainpage.png') no-repeat center center;
+  background-size: cover;
+  color: black;
+  background-color: black;
+  font-family: 'Roboto', sans-serif;
+}
+
+.left-column {
+  width: 38%;
+  background-color: rgba(255, 255, 255, 0.95); /* This creates the white transparent background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px; /* Adjust as necessary */
+}
+
+.header {
+  position: absolute;
+  top: 0px; /* Adjust the value as needed */
+  left: 30px; /* Adjust the value as needed */
+  background-color: black; /* Bubble background color */
+  color: white; /* Text color */
+  font-size: 1.0em; /* Adjust the value as needed */
+  font-weight: bold;
+  padding: 10px 15px; /* Adjust for desired bubble size */
+  border-radius: 15px; /* Adjust for desired roundness */
+  z-index: 10; /* Ensure it's above other content */
+}
+
+.BookNowMainPageButton{
+  position: absolute;
+  left: 50px;
+  padding: 10px 100px;
+  border-radius: 10px;
+}
+
+h1.LandingName{
+  font-size: 2.5em;
+}
+p.LocationLanding{
+  color: grey;
+  font-size: .8em;
+}
+.right-column {
+
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 50px; /* Adjust as necessary */
+  color: grey;
+  font-size: smaller;
+  right: 20px;
+}
+
+.NAMEinfo{
+  color: white;
+  font: x-small;
+  text-align: left;
+}
+
+.Otherinfo{
+  text-align: left;
+}
+button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.info {
+  text-align: right;
+}

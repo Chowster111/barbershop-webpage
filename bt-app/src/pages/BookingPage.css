@@ -1,0 +1,172 @@
+/* BookingPage.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+  }
+  
+  /* BookingPage.css */
+  .booking-container {
+    display: flex;
+    min-height: 100vh; /* Ensure minimum height is the full viewport height */
+    background-color: #f5f5f5; /* Light grey background */
+    overflow: hidden; /* Hide overflow to prevent scrollbars */
+  }
+  
+  
+  .left-container {
+    width: 60%; /* Adjust if necessary */
+    margin-left: 2%; /* This will add some space on the right side of the professional cards */
+  }
+  
+  .header-title {
+    margin-top: 20px; /* Adjust the top margin as needed */
+    margin-left: 20px; /* Adjust the left margin as needed */
+    margin-bottom: 20px; /* Space above the professional cards */
+    font-size: 2em; /* Adjust font size as needed */
+  }
+  
+  .professionals-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns based on the screenshot */
+    gap: 20px;
+    width: fit-content;
+    font-size: smaller;
+  }
+  .professional-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, margin 0.3s ease;
+    will-change: transform, margin;
+    border: 1px solid #ddd; /* Thin light grey border */
+  }
+
+  .professional-card:hover {
+    transform: scale(1.10); /* This slightly scales up the card */
+    margin-bottom: 10px; /* This adds space at the bottom */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: emphasize shadow on hover */
+  }
+
+  .professional-card.selected {
+    transform: scale(1.1); /* Slightly larger to show it's selected */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Add a shadow for effect */
+  }
+  
+  .professional-image-wrapper {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  
+  .professional-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .professional-info {
+    text-align: center;
+  }
+  
+  .professional-name {
+    font-weight: bold;
+  }
+  
+  .professional-date {
+    color: #666;
+  }
+  
+  .payment-details-container {
+    width: 40%; /* Adjust the width as per your layout */
+    /* Temporary styling; update this when you implement payment details */
+    background-color: #f9f9f9;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add any additional styling you need for the rest of the elements */
+  
+  .right-container {
+    width: 40%; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Distribute space around the children */
+    padding: 20px; /* Add padding */
+    /* This will cover the full height between header and footer, if any */
+    box-sizing: border-box; /* Include padding in the width calculation */;
+    margin-top: 30px;
+  }
+  
+ /* PaymentSummary.css or BookingPage.css */
+/* PaymentSummary.css */
+.payment-summary {
+    background-color: #fff;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Use the full width of the container */
+    margin: 30px; /* Add some vertical margin */
+    padding: 30px; /* Increase padding for a larger card */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the flex container */
+  }
+  
+  .payment-summary-title {
+    font-size: 1.5em; /* Make the title bigger */
+    margin-bottom: 20px; /* More space below the title */
+    width: 100%; /* Ensure the title spans the full width */
+    text-align: left; /* Align the title to the left */
+  }
+  
+  .barbershop-name {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 30px; /* Space between shop name and order details */
+  }
+  
+  .order-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space out the name and price */
+    align-items: center; /* Align the items vertically */
+    margin-bottom: 30px; /* Space between order details and subtotal */
+  }
+  
+  .barber-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    /* No changes needed here since we're not adding the picture */
+  }
+  
+  .service-description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px; /* Space between barber name and service description */
+  }
+  
+  .price {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .subtotal-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px; /* Space between subtotal and button */
+  }
+  
+  .subtotal-text,
+  .subtotal-price {
+    font-size: 1.2em;
+  }
+  
+ 
