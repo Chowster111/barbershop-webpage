@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './SchedulePage.css';
 import Map from '../components/Map';
 
@@ -23,6 +23,9 @@ const SchedulePage = ({ selectedBarberName }) => {
     '1:00pm', '1:30pm', '3:00pm', '5:30pm',
   ];
 
+  const history = useHistory();
+  const location = useLocation();
+
   const handleDayClick = (day) => {
     setSelectedDay(day);
     setSelectedTime(null);
@@ -35,7 +38,6 @@ const SchedulePage = ({ selectedBarberName }) => {
   };
 
   const updatePaymentButtonState = (day, time) => {
-    // Check if both day and time are selected
     if (day !== null && time !== null) {
       setIsReadyToPay(true);
     } else {
@@ -79,15 +81,22 @@ const SchedulePage = ({ selectedBarberName }) => {
         <div className="map-container">
           <Map />
         </div>
-         
-        <Link to="/payment">
-          {/* Conditionally style the button based on isReadyToPay */}
-         <button
-          className={`payment-button ${isReadyToPay ? 'ready-to-pay' : ''}`}
-          disabled={!isReadyToPay}
+        <Link
+          to={{
+            pathname: "/payment",
+            state: {
+              selectedDay: selectedDay,
+              selectedTime: selectedTime,
+              subtotal: location.state ? location.state.subtotal : 0,
+            },
+          }}
         >
-          Continue
-        </button>
+          <button
+            className={`payment-button ${isReadyToPay ? 'ready-to-pay' : ''}`}
+            disabled={!isReadyToPay}
+          >
+            Continue
+          </button>
         </Link>
       </div>
     </div>

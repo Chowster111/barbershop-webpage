@@ -1,20 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const PaymentPage = () => {
-  // You can fetch the selected day, time slot, and subtotal from your state or props here
-
+const PaymentPage = ({ selectedDay, selectedTime, subtotal }) => {
   return (
     <div className="payment-page">
       <h2>Payment Information</h2>
-      {/* Display the selected day, time slot, and subtotal here */}
-      <p>Selected Day: { /* Place selected day here */ }</p>
-      <p>Selected Time Slot: { /* Place selected time slot here */ }</p>
-      <p>Subtotal: ${ /* Place subtotal here */ }</p>
-
-      {/* Add payment form or integration with a payment gateway here */}
-      
-      {/* Add a button to confirm the payment and proceed */}
-      <button>Confirm Payment</button>
+      <p>Selected Day: {selectedDay}</p>
+      <p>Selected Time: {selectedTime}</p>
+      <p>Subtotal: ${subtotal}</p> {/* Display subtotal with two decimal places */}
+      <Link to="/confirm"> {/* Link to confirmation page */}
+        <button className="confirm-button">Confirm Payment</button>
+      </Link>
     </div>
   );
 };

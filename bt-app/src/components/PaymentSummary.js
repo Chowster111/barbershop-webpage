@@ -10,7 +10,7 @@ const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
     { label: 'Scissor Cut (1hr)', price: 20 },
   ];
 
-  const history = useHistory(); // Initialize useHistory
+  const history = useHistory();
 
   const toggleExtraService = (label) => {
     setSelectedExtras((prevExtras) =>
@@ -29,8 +29,13 @@ const PaymentSummary = ({ barberName, serviceDescription, basePrice }) => {
   };
 
   const handleChooseTimeClick = () => {
-    history.push(`/schedule/${barberName}`);
+    // Calculate the subtotal
+    const subtotal = calculateTotalPrice();
+    
+    // Navigate to the SchedulePage with the subtotal
+    history.push(`/schedule/${barberName}`, { subtotal });
   };
+
 
   return (
     <div className="payment-summary">

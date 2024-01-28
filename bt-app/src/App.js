@@ -50,9 +50,13 @@ function App() {
               <Route path="/schedule/:barberName" render={(props) => (
                 <SchedulePage selectedBarberName={props.match.params.barberName} />
               )} />
-              <Route path="/payment">
-                <PaymentPage />
-              </Route>
+              <Route path="/payment" render={(props) => (
+                <PaymentPage
+                  selectedDay={props.location.state.selectedDay}
+                  selectedTime={props.location.state.selectedTime}
+                  subtotal={props.location.state.subtotal}
+                />
+              )} />
               {/* Add other Routes here if necessary */}
             </Switch>
           </CSSTransition>
