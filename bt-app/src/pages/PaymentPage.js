@@ -69,7 +69,7 @@ const PaymentPage = ({ selectedDay, selectedTime, subtotal }) => {
     <div className="brand-bubble">AJ Theory</div> {/* AJ Theory logo or title */}
       <div className="payment-box"> {/* Container with darker background and thin borders */}
         <h2 className="payment-summary-title">Payment Information</h2>
-        <p className="barbershop-name">Barber Theory Barbershop</p>
+        <p className="barbershop-name">Barber Theory</p>
         <div className="order-details">
           <div className="order-text">
             <p className="barber-time">{selectedTime} ET</p>
@@ -102,16 +102,16 @@ const PaymentPage = ({ selectedDay, selectedTime, subtotal }) => {
 
         <div className="subtotal-section">
           <span className="subtotal-text">Subtotal</span>
-          <span className="subtotal-price">${subtotal}</span>
+          <span className="subtotal-price">${subtotal} CAD</span>
         </div>
 
         <div className="total-section">
           <span className="total-text">Total</span>
-          <span className="total-price">${calculateTotalPrice()}</span>
+          <span className="total-price">${calculateTotalPrice()} CAD</span>
         </div>
 
         <Link to="/confirm"> {/* Link to the confirmation page */}
-          <button className="confirm-button">Proceed to Payment</button>
+          <button className="confirm-button">Proceed</button>
         </Link>
       </div>
     </div>

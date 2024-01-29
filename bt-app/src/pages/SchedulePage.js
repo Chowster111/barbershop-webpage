@@ -92,7 +92,7 @@ const SchedulePage = ({ selectedBarberName }) => {
           }}
         >
           <button
-            className={`payment-button ${isReadyToPay ? 'ready-to-pay' : ''}`}
+            className={`payment-button1 ${isReadyToPay ? 'ready-to-pay' : ''}`}
             disabled={!isReadyToPay}
           >
             Continue

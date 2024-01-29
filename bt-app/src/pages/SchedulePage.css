@@ -172,7 +172,7 @@ h2.MapHeader{
     /* Add any additional styles you want for the marker */
   }
 
-  .payment-button{
+  .payment-button1{
     border-radius: 20px;
     margin-top: 40px;
     margin-left: 150px;
@@ -181,7 +181,7 @@ h2.MapHeader{
   }
 
   /* Selected style for the button (black) */
-  .payment-button.ready-to-pay {
+  .payment-button1.ready-to-pay {
     background-color: #000; /* Black background color */
     color: #fff; /* White text color */
     cursor: pointer; /* Change cursor to pointer when ready to pay */

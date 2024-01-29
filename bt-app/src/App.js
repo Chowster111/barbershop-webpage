@@ -6,6 +6,7 @@ import SchedulePage from './pages/SchedulePage'; // Import the schedule page com
 import PaymentPage from './pages/PaymentPage'; // Import PaymentPage component
 import './App.css';
 import { Link } from 'react-router-dom';
+import ConfirmPage from './pages/ConfirmPage'; // Adjust the path as necessary
 
 function App() {
   return (
@@ -20,15 +21,14 @@ function App() {
             <Switch location={location}>
               <Route exact path="/">
                 <div className="container">
-                  {/* Your main page content */}
                   <div className="left-column">
                     <div className="header">AJ Theory</div>
                     <div className="overlay">
                       <h1 className='LandingName'>Barber Theory</h1>
                       <p className='LocationLanding'>📍 1 Location In Toronto, ON</p>
-                        <Link to="/book" style={{ textDecoration: 'none', color: 'inherit' }}>
-                          <button className = "BookNowMainPageButton">Book Now</button>
-                        </Link>
+                      <Link to="/book" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <button className="BookNowMainPageButton">Book Now</button>
+                      </Link>
                     </div>
                   </div>
                   <div className="right-column">
@@ -42,12 +42,15 @@ function App() {
                   </div>
                 </div>
               </Route>
+              
               <Route path="/book">
                 <BookingPage />
               </Route>
+
               <Route path="/schedule/:barberName" render={(props) => (
                 <SchedulePage selectedBarberName={props.match.params.barberName} />
               )} />
+
               <Route path="/payment" render={(props) => (
                 <PaymentPage
                   selectedDay={props.location.state.selectedDay}
@@ -55,6 +58,9 @@ function App() {
                   subtotal={props.location.state.subtotal}
                 />
               )} />
+
+              <Route path="/confirm" component={ConfirmPage} />
+
               {/* Add other Routes here if necessary */}
             </Switch>
           </CSSTransition>
