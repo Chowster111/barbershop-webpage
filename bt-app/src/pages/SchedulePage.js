@@ -8,11 +8,11 @@ const SchedulePage = ({ selectedBarberName, startDate }) => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [isReadyToPay, setIsReadyToPay] = useState(false);
   const [daysOfWeek, setDaysOfWeek] = useState([]);
+  const [dayTimeSlots, setDayTimeSlots] = useState([]);
 
   const location = useLocation();
 
   useEffect(() => {
-    // Helper function to get the days of the week starting from a specific date
     const getDaysOfWeek = (startDate) => {
       const days = [];
       for (let i = 0; i < 7; i++) {
@@ -25,25 +25,60 @@ const SchedulePage = ({ selectedBarberName, startDate }) => {
       return days;
     };
 
-// Check if availableDate is passed and is valid
-if (location.state?.availableDate) {
-  const startDate = new Date(location.state.availableDate);
-  setDaysOfWeek(getDaysOfWeek(startDate));
-} else {
-  // Handle the case where no date is passed or the date is invalid
-  console.error("No available date provided");
-}
-}, [location.state]);
+    if (location.state?.availableDate) {
+      const startDate = new Date(location.state.availableDate);
+      setDaysOfWeek(getDaysOfWeek(startDate));
+    } else {
+      console.error("No available date provided");
+    }
+  }, [location.state]);
 
-  const timeSlots = [
-    '10:00am', '10:30am', '11:00am', '11:30am',
-    '1:00pm', '1:30pm', '3:00pm', '5:30pm',
-  ];
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 8; hour <= 19; hour++) {
+      const hourString = hour > 12 ? hour - 12 : hour;
+      const amPm = hour >= 12 ? 'pm' : 'am';
 
+      slots.push(`${hourString}:00${amPm}`);
+      if (hour < 19) {
+        slots.push(`${hourString}:30${amPm}`);
+      }
+    }
+    return slots;
+  };
+
+  const allTimeSlots = generateTimeSlots();
+
+  const compareTimeSlots = (time1, time2) => {
+    const formatTime = time => {
+      const [hourMinute, period] = time.split(/(am|pm)/);
+      let [hours, minutes] = hourMinute.split(':');
+      hours = period === 'pm' ? (parseInt(hours) % 12) + 12 : parseInt(hours);
+      return parseInt(hours) * 60 + parseInt(minutes);
+    };
+
+    return formatTime(time1) - formatTime(time2);
+  };
+
+  const getRandomSubset = (slots, minSize) => {
+    let maxSize = 11;
+    let subset = [];
+    while (subset.length < minSize) {
+      subset = slots
+        .sort(() => 0.5 - Math.random())
+        .slice(0, Math.floor(Math.random() * (maxSize - minSize + 1)) + minSize);
+      // Sort the subset in chronological order
+      subset.sort(compareTimeSlots);
+    }
+    return subset;
+  };
   const handleDayClick = (day) => {
     setSelectedDay(day);
     setSelectedTime(null);
     updatePaymentButtonState(day, selectedTime);
+
+    const randomSubset = getRandomSubset(allTimeSlots, 2);
+    setDayTimeSlots(randomSubset);
   };
 
   const handleTimeClick = (time) => {
@@ -75,7 +110,7 @@ if (location.state?.availableDate) {
           ))}
         </div>
         <div className="time-slot-container">
-          {timeSlots.map((time, index) => (
+          {dayTimeSlots.map((time, index) => (
             <div
               key={index}
               className={`time-slot ${selectedTime === time ? 'selected' : ''}`}
