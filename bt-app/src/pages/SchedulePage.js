@@ -1,30 +1,44 @@
-import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './SchedulePage.css';
 import Map from '../components/Map';
 
-const SchedulePage = ({ selectedBarberName }) => {
+const SchedulePage = ({ selectedBarberName, startDate }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isReadyToPay, setIsReadyToPay] = useState(false);
+  const [daysOfWeek, setDaysOfWeek] = useState([]);
 
-  const daysOfWeek = [
-    { day: 31, label: "Wed." },
-    { day: 1, label: "Thu." },
-    { day: 2, label: "Fri." },
-    { day: 3, label: "Sat." },
-    { day: 4, label: "Sun." },
-    { day: 5, label: "Mon." },
-    { day: 6, label: "Tue." },
-  ];
+  const location = useLocation();
+
+  useEffect(() => {
+    // Helper function to get the days of the week starting from a specific date
+    const getDaysOfWeek = (startDate) => {
+      const days = [];
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + i);
+        const day = date.getDate();
+        const label = date.toLocaleDateString('en-US', { weekday: 'short' }) + '.';
+        days.push({ day, label });
+      }
+      return days;
+    };
+
+// Check if availableDate is passed and is valid
+if (location.state?.availableDate) {
+  const startDate = new Date(location.state.availableDate);
+  setDaysOfWeek(getDaysOfWeek(startDate));
+} else {
+  // Handle the case where no date is passed or the date is invalid
+  console.error("No available date provided");
+}
+}, [location.state]);
 
   const timeSlots = [
     '10:00am', '10:30am', '11:00am', '11:30am',
     '1:00pm', '1:30pm', '3:00pm', '5:30pm',
   ];
-
-  const history = useHistory();
-  const location = useLocation();
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
@@ -38,11 +52,7 @@ const SchedulePage = ({ selectedBarberName }) => {
   };
 
   const updatePaymentButtonState = (day, time) => {
-    if (day !== null && time !== null) {
-      setIsReadyToPay(true);
-    } else {
-      setIsReadyToPay(false);
-    }
+    setIsReadyToPay(day !== null && time !== null);
   };
 
   return (

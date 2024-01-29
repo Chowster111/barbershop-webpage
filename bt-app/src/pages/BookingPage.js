@@ -41,7 +41,7 @@ const BookingPage = () => {
 
     // Create a new array with updated availability dates
     const updatedProfessionals = professionals.map(professional => {
-      const randomDaysToAdd = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
+      const randomDaysToAdd = Math.floor(Math.random() * 3) + 1; // Random number between 1 and 4
       const newDate = addDays(new Date(), randomDaysToAdd);
       return { ...professional, availableDate: formatDate(newDate) };
     });
@@ -74,14 +74,15 @@ const BookingPage = () => {
         </div>
       </div>
       <div className="right-container">
-        {selectedProfessional && (
-          <PaymentSummary
-            barberName={selectedProfessional ? selectedProfessional.name : ''}
-            serviceDescription={selectedProfessional ? selectedProfessional.serviceName : ''}
-            basePrice={selectedProfessional ? selectedProfessional.price : '0'}
-          />
-        )}
-      </div>
+      {selectedProfessional && (
+        <PaymentSummary
+          barberName={selectedProfessional.name}
+          serviceDescription={selectedProfessional.serviceName}
+          basePrice={selectedProfessional.price}
+          nextAvailableDate={selectedProfessional.availableDate} // Pass the availableDate here
+        />
+      )}
+    </div>
     </div>
   );
 };
