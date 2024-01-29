@@ -26,11 +26,9 @@ function App() {
                     <div className="overlay">
                       <h1 className='LandingName'>Barber Theory</h1>
                       <p className='LocationLanding'>📍 1 Location In Toronto, ON</p>
-                      <button className='BookNowMainPageButton'>
                         <Link to="/book" style={{ textDecoration: 'none', color: 'inherit' }}>
-                          Book now
+                          <button className = "BookNowMainPageButton">Book Now</button>
                         </Link>
-                      </button>
                     </div>
                   </div>
                   <div className="right-column">

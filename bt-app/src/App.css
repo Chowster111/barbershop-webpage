@@ -102,3 +102,8 @@ button {
   transform: scale(0.95);
   transition: opacity 300ms ease-in, transform 300ms ease-in;
 }
+
+.BookNowButton{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
