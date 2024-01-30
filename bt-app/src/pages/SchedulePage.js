@@ -9,6 +9,8 @@ const SchedulePage = ({ selectedBarberName, startDate }) => {
   const [isReadyToPay, setIsReadyToPay] = useState(false);
   const [daysOfWeek, setDaysOfWeek] = useState([]);
   const [dayTimeSlots, setDayTimeSlots] = useState([]);
+  const [showTimeSlots, setShowTimeSlots] = useState(false);
+
 
   const location = useLocation();
 
@@ -76,10 +78,13 @@ const SchedulePage = ({ selectedBarberName, startDate }) => {
     setSelectedDay(day);
     setSelectedTime(null);
     updatePaymentButtonState(day, selectedTime);
+    setShowTimeSlots(true); // Show time slots when a day is clicked
 
     const randomSubset = getRandomSubset(allTimeSlots, 2);
     setDayTimeSlots(randomSubset);
   };
+
+
 
   const handleTimeClick = (time) => {
     setSelectedTime(time);
@@ -112,12 +117,12 @@ const SchedulePage = ({ selectedBarberName, startDate }) => {
         <div className="time-slot-container">
           {dayTimeSlots.map((time, index) => (
             <div
-              key={index}
-              className={`time-slot ${selectedTime === time ? 'selected' : ''}`}
-              onClick={() => handleTimeClick(time)}
-            >
-              {time}
-            </div>
+            key={index}
+            className={`time-slot ${selectedTime === time ? 'selected' : ''} ${showTimeSlots ? 'visible' : ''}`}
+            onClick={() => handleTimeClick(time)}
+          >
+            {time}
+          </div>
           ))}
         </div>
       </div>
